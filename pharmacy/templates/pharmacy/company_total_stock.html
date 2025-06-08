@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Firma Toplam Stok</h2>
+  <p>Firma ID: <strong>{{ company_id }}</strong></p>
+  <p>Toplam Stok: <strong>{{ total_stock }}</strong></p>
+  <a href="{% url 'company_list' %}" class="btn btn-primary">Firmalara Dön</a>
+</div>
+{% endblock %}

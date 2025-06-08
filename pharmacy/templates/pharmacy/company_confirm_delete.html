@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Firma Sil</h2>
+  <p>Firma <strong>{{ company.company_name }}</strong>'yı silmek istediğinize emin misiniz?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a href="{% url 'company_list' %}" class="btn btn-secondary">İptal</a>
+  </form>
+</div>
+{% endblock %}

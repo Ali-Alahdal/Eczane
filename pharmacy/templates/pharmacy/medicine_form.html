@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>{% if medicine %}İlaç Düzenle{% else %}İlaç Ekle{% endif %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label>Barkod</label>
+      <input type="text" name="barcode" class="form-control" value="{{ medicine.barcode|default:'' }}" required>
+    </div>
+    <div class="mb-3">
+      <label>İlaç Adı</label>
+      <input type="text" name="medicine_name" class="form-control" value="{{ medicine.medicine_name|default:'' }}" required>
+    </div>
+    <div class="mb-3">
+      <label>Fiyat</label>
+      <input type="number" step="0.01" name="price" class="form-control" value="{{ medicine.price|default:'' }}" required>
+    </div>
+    <div class="mb-3">
+      <label>Stok Miktarı</label>
+      <input type="number" name="in_stock" class="form-control" value="{{ medicine.in_stock|default:'' }}" required>
+    </div>
+    <div class="mb-3">
+      <label>Firma</label>
+      <select name="company_id" class="form-select" required>
+        <option value="">Firma Seçiniz</option>
+        {% for id, name in companies %}
+        <option value="{{ id }}" {% if medicine and medicine.company_id == id %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Form</label>
+      <select name="form_id" class="form-select" required>
+        <option value="">Form Seçiniz</option>
+        {% for id, name in forms %}
+        <option value="{{ id }}" {% if medicine and medicine.form_id == id %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Etki Grubu</label>
+      <select name="effect_group_id" class="form-select" required>
+        <option value="">Etki Grubu Seçiniz</option>
+        {% for id, name in effectgroups %}
+        <option value="{{ id }}" {% if medicine and medicine.effect_group_id == id %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Raf</label>
+      <select name="shelf_id" class="form-select">
+        <option value="">Raf Seçiniz (isteğe bağlı)</option>
+        {% for id, name in shelves %}
+        <option value="{{ id }}" {% if medicine and medicine.shelf_id == id %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Reçete</label>
+      <select name="prescription_id" class="form-select">
+        <option value="">Reçete Seçiniz (isteğe bağlı)</option>
+        {% for id, name in issuances %}
+        <option value="{{ id }}" {% if medicine and medicine.prescription_id == id %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a href="{% url 'medicine_list' %}" class="btn btn-secondary">İptal</a>
+  </form>
+</div>
+{% endblock %}

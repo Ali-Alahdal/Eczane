@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Tüm Reçete Verilişleri</h2>
+  <a href="{% url 'prescriptionissuance_create' %}" class="btn btn-primary mb-2">Reçete Verilişi Ekle</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Reçete No</th>
+        <th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in issuances %}
+      <tr>
+        <td>{{ i.issuance_id }}</td>
+        <td>{{ i.issuance_no }}</td>
+        <td>
+          <a href="{% url 'prescriptionissuance_update' i.issuance_id %}" class="btn btn-sm btn-warning">Düzenle</a>
+          <a href="{% url 'prescriptionissuance_delete' i.issuance_id %}" class="btn btn-sm btn-danger">Sil</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Tüm Şirketler</h2>
+  <a href="{% url 'company_create' %}" class="btn btn-primary mb-2">Şirket Ekle</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Şirket Adı</th>
+        <th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in companies %}
+      <tr>
+        <td>{{ c.company_id }}</td>
+        <td>{{ c.company_name }}</td>
+        <td>
+          <a href="{% url 'company_update' c.company_id %}" class="btn btn-sm btn-warning">Düzenle</a>
+          <a href="{% url 'company_delete' c.company_id %}" class="btn btn-sm btn-danger">Sil</a>
+          <a href="{% url 'company_total_stock' company_id=c.company_id %}" class="btn btn-sm btn-info">Toplam Stok</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

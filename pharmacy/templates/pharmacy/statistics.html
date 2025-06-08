@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4"><i class="bi bi-bar-chart-fill text-primary me-2"></i>Pharmacy Statistics</h2>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card shadow-card text-center">
+        <div class="card-body">
+          <i class="bi bi-capsule text-info" style="font-size:2.5rem;"></i>
+          <h5 class="card-title mt-2">Total Medicines</h5>
+          <p class="display-6">{{ stats.total_medicines }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-card text-center">
+        <div class="card-body">
+          <i class="bi bi-person text-success" style="font-size:2.5rem;"></i>
+          <h5 class="card-title mt-2">Total Customers</h5>
+          <p class="display-6">{{ stats.total_customers }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-card text-center">
+        <div class="card-body">
+          <i class="bi bi-cart text-warning" style="font-size:2.5rem;"></i>
+          <h5 class="card-title mt-2">Total Sales</h5>
+          <p class="display-6">{{ stats.total_sales }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-card text-center">
+        <div class="card-body">
+          <i class="bi bi-building text-primary" style="font-size:2.5rem;"></i>
+          <h5 class="card-title mt-2">Total Companies</h5>
+          <p class="display-6">{{ stats.total_companies }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-card text-center">
+        <div class="card-body">
+          <i class="bi bi-hospital text-danger" style="font-size:2.5rem;"></i>
+          <h5 class="card-title mt-2">Total Institutions</h5>
+          <p class="display-6">{{ stats.total_institutions }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-card text-center">
+        <div class="card-body">
+          <i class="bi bi-grid text-dark" style="font-size:2.5rem;"></i>
+          <h5 class="card-title mt-2">Total Shelves</h5>
+          <p class="display-6">{{ stats.total_shelves }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-card text-center">
+        <div class="card-body">
+          <i class="bi bi-lightning text-warning" style="font-size:2.5rem;"></i>
+          <h5 class="card-title mt-2">Total Effect Groups</h5>
+          <p class="display-6">{{ stats.total_effectgroups }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-card text-center">
+        <div class="card-body">
+          <i class="bi bi-box text-info" style="font-size:2.5rem;"></i>
+          <h5 class="card-title mt-2">Total Forms</h5>
+          <p class="display-6">{{ stats.total_forms }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-card text-center">
+        <div class="card-body">
+          <i class="bi bi-file-earmark-medical text-primary" style="font-size:2.5rem;"></i>
+          <h5 class="card-title mt-2">Total Prescription Issuances</h5>
+          <p class="display-6">{{ stats.total_prescriptions }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

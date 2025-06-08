@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>All Institutions</h2>
+  <a href="{% url 'institution_create' %}" class="btn btn-primary mb-2">Add Institution</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Institution</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in institutions %}
+      <tr>
+        <td>{{ i.institution_id }}</td>
+        <td>{{ i.institution }}</td>
+        <td>
+          <a href="{% url 'institution_update' i.institution_id %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'institution_delete' i.institution_id %}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

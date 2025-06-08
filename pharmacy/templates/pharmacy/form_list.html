@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>All Forms</h2>
+  <a href="{% url 'form_create' %}" class="btn btn-primary mb-2">Add Form</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Form Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in forms %}
+      <tr>
+        <td>{{ f.form_id }}</td>
+        <td>{{ f.form_name }}</td>
+        <td>
+          <a href="{% url 'form_update' f.form_id %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'form_delete' f.form_id %}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

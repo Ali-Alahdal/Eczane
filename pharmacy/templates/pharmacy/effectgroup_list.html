@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>All Effect Groups</h2>
+  <a href="{% url 'effectgroup_create' %}" class="btn btn-primary mb-2">Add Effect Group</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Effect Group</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for eg in effectgroups %}
+      <tr>
+        <td>{{ eg.effect_group_id }}</td>
+        <td>{{ eg.effect_group }}</td>
+        <td>
+          <a href="{% url 'effectgroup_update' eg.effect_group_id %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'effectgroup_delete' eg.effect_group_id %}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

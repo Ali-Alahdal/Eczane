@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>{% if sale %}Satışı Düzenle{% else %}Satış Ekle{% endif %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="id_medicine_id" class="form-label">İlaç</label>
+      <select name="medicine_id" id="id_medicine_id" class="form-select" required>
+        <option value="">---------</option>
+        {% for m in medicines %}
+          <option value="{{ m.0 }}" {% if form.data.medicine_id|stringformat:'s' == m.0|stringformat:'s' or sale and sale.medicine_id == m.0 %}selected{% endif %}>{{ m.1 }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="id_institution_id" class="form-label">Kurum</label>
+      <select name="institution_id" id="id_institution_id" class="form-select">
+        <option value="">---------</option>
+        {% for i in institutions %}
+          <option value="{{ i.0 }}" {% if form.data.institution_id|stringformat:'s' == i.0|stringformat:'s' or sale and sale.institution_id == i.0 %}selected{% endif %}>{{ i.1 }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="id_customer_id" class="form-label">Müşteri</label>
+      <select name="customer_id" id="id_customer_id" class="form-select">
+        <option value="">---------</option>
+        {% for c in customers %}
+          <option value="{{ c.0 }}" {% if form.data.customer_id|stringformat:'s' == c.0|stringformat:'s' or sale and sale.customer_id == c.0 %}selected{% endif %}>{{ c.1 }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="id_sale_price" class="form-label">Satış Fiyatı</label>
+      <input type="number" step="0.01" name="sale_price" id="id_sale_price" class="form-control" value="{{ form.data.sale_price|default_if_none:'' }}" required>
+    </div>
+    <div class="mb-3">
+      <label for="id_quantity" class="form-label">Adet</label>
+      <input type="number" name="quantity" id="id_quantity" class="form-control" value="{{ form.data.quantity|default_if_none:'' }}" required>
+    </div>
+    <div class="mb-3">
+      <label for="id_barcode" class="form-label">Barkod</label>
+      <input type="text" name="barcode" id="id_barcode" class="form-control" value="{{ form.data.barcode|default_if_none:'' }}" required>
+    </div>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a href="{% url 'medicinesale_list' %}" class="btn btn-secondary">İptal</a>
+  </form>
+</div>
+{% endblock %}

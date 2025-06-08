@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eczane Sistemi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+      body { background: #f8f9fa; }
+      /* --- Modern Pharmacy Header --- */
+      .navbar {
+        background: #fff !important;
+        min-height: 84px;
+        border-radius: 0 0 24px 24px;
+        box-shadow: 0 6px 32px 0 rgba(13, 202, 240, 0.10), 0 2px 0 #0dcaf0;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        position: relative;
+        z-index: 10;
+        border-bottom: 4px solid #0dcaf0;
+        flex-wrap: wrap;
+      }
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 2px;
+        display: flex;
+        align-items: center;
+        font-size: 2.1rem;
+        color: #0dcaf0 !important;
+        text-shadow: 0 2px 8px rgba(13,202,240,0.08);
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .navbar-brand .bi-capsule {
+        font-size: 2.5rem;
+        margin-right: 14px;
+        color: #38b6ff;
+        filter: drop-shadow(0 2px 8px #0dcaf0);
+      }
+      .main-nav {
+        flex-wrap: wrap;
+      }
+      .main-nav .nav-link {
+        color: #212529 !important;
+        font-weight: 500;
+        font-size: 1.13rem;
+        margin-right: 6px;
+        border-radius: 8px;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        padding: 0.6rem 1.2rem;
+        position: relative;
+        white-space: nowrap;
+        min-width: 0;
+        max-width: 100vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .main-nav .nav-link.active, .main-nav .nav-link:hover {
+        color: #fff !important;
+        background: linear-gradient(90deg, #0dcaf0 0%, #38b6ff 100%);
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 2px 12px rgba(13,202,240,0.10);
+      }
+      .main-nav .nav-link i { color: #0dcaf0; font-size: 1.2em; margin-right: 4px; }
+      .main-nav .nav-link.active i, .main-nav .nav-link:hover i { color: #fff; }
+      .main-buttons .btn { margin-bottom: 10px; font-size: 1.1rem; }
+      .main-buttons .btn i { margin-right: 6px; }
+      .shadow-card { box-shadow: 0 2px 16px rgba(0,0,0,0.07); border-radius: 12px; }
+      @media (max-width: 991px) {
+        .navbar {
+          border-radius: 0 0 16px 16px;
+        }
+        .navbar-brand { font-size: 1.5rem; }
+        .navbar-nav.main-nav {
+          flex-direction: column;
+          align-items: flex-start;
+          flex-wrap: wrap !important;
+        }
+        .main-nav .nav-link {
+          width: 100%;
+          max-width: 100%;
+          text-align: left;
+        }
+      }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm align-items-center">
+  <div class="container-fluid d-flex flex-row align-items-center justify-content-between flex-nowrap">
+    <a class="navbar-brand d-flex align-items-center me-4 flex-shrink-0" href="/">
+      <i class="bi bi-capsule ms-4"></i><span class="ms-3">Eczane Dashboard</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menüyü Aç/Kapat">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
+      <ul class="navbar-nav main-nav ms-auto gap-lg-2 d-flex align-items-center flex-row flex-nowrap">
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-1" href="{% url 'medicine_list' %}"><i class="bi bi-capsule"></i><span class="ms-1">İlaçlar</span></a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-1" href="{% url 'customer_list' %}"><i class="bi bi-person"></i><span class="ms-1">Müşteriler</span></a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-1" href="{% url 'medicinesale_list' %}"><i class="bi bi-cart"></i><span class="ms-1">Satışlar</span></a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-1" href="{% url 'pharmacy_statistics' %}"><i class="bi bi-bar-chart-fill"></i><span class="ms-1">İstatistikler</span></a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-list"></i><span class="ms-1">Daha Fazla</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item d-flex align-items-center gap-1" href="{% url 'effectgroup_list' %}"><i class="bi bi-lightning"></i><span class="ms-1">Etki Grupları</span></a></li>
+            <li><a class="dropdown-item d-flex align-items-center gap-1" href="{% url 'form_list' %}"><i class="bi bi-box"></i><span class="ms-1">Formlar</span></a></li>
+            <li><a class="dropdown-item d-flex align-items-center gap-1" href="{% url 'company_list' %}"><i class="bi bi-building"></i><span class="ms-1">Firmalar</span></a></li>
+            <li><a class="dropdown-item d-flex align-items-center gap-1" href="{% url 'institution_list' %}"><i class="bi bi-hospital"></i><span class="ms-1">Kurumlar</span></a></li>
+            <li><a class="dropdown-item d-flex align-items-center gap-1" href="{% url 'shelf_list' %}"><i class="bi bi-grid"></i><span class="ms-1">Raflar</span></a></li>
+            <li><a class="dropdown-item d-flex align-items-center gap-1" href="{% url 'prescriptionissuance_list' %}"><i class="bi bi-file-earmark-medical"></i><span class="ms-1">Reçete Verilişleri</span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<main>
+    <div class="container mt-4">
+      <div class="row g-3 main-buttons">
+        <div class="col-6 col-md-4 col-lg-3"><a href="{% url 'medicine_list' %}" class="btn btn-outline-primary w-100 shadow-card"><i class="bi bi-capsule"></i> İlaçlar</a></div>
+        <div class="col-6 col-md-4 col-lg-3"><a href="{% url 'effectgroup_list' %}" class="btn btn-outline-secondary w-100 shadow-card"><i class="bi bi-lightning"></i> Etki Grupları</a></div>
+        <div class="col-6 col-md-4 col-lg-3"><a href="{% url 'form_list' %}" class="btn btn-outline-info w-100 shadow-card"><i class="bi bi-box"></i> Formlar</a></div>
+        <div class="col-6 col-md-4 col-lg-3"><a href="{% url 'company_list' %}" class="btn btn-outline-success w-100 shadow-card"><i class="bi bi-building"></i> Firmalar</a></div>
+        <div class="col-6 col-md-4 col-lg-3"><a href="{% url 'institution_list' %}" class="btn btn-outline-warning w-100 shadow-card"><i class="bi bi-hospital"></i> Kurumlar</a></div>
+        <div class="col-6 col-md-4 col-lg-3"><a href="{% url 'shelf_list' %}" class="btn btn-outline-dark w-100 shadow-card"><i class="bi bi-grid"></i> Raflar</a></div>
+        <div class="col-6 col-md-4 col-lg-3"><a href="{% url 'prescriptionissuance_list' %}" class="btn btn-outline-primary w-100 shadow-card"><i class="bi bi-file-earmark-medical"></i> Reçete Verilişleri</a></div>
+        <div class="col-6 col-md-4 col-lg-3"><a href="{% url 'customer_list' %}" class="btn btn-outline-secondary w-100 shadow-card"><i class="bi bi-person"></i> Müşteriler</a></div>
+        <div class="col-6 col-md-4 col-lg-3"><a href="{% url 'medicinesale_list' %}" class="btn btn-outline-success w-100 shadow-card"><i class="bi bi-cart"></i> Satışlar</a></div>
+      </div>
+    </div>
+    <div class="container mt-4">
+      {% block content %}{% endblock %}
+    </div>
+</main>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

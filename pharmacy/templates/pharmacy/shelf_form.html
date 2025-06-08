@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>{% if shelf %}Raf Düzenle{% else %}Raf Ekle{% endif %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a href="{% url 'shelf_list' %}" class="btn btn-secondary">İptal</a>
+  </form>
+</div>
+{% endblock %}
